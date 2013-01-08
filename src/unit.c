@@ -111,7 +111,7 @@ static void Unit_MovementTick(Unit *unit)
 	}
 
 	if ((speed & 0xFF00) != 0) {
-		Unit_Move(unit, min(unit->speed * 16, Tile_GetDistance(unit->o.position, unit->currentDestination) + 16));
+		Unit_Move(unit, min(unit->speed, Tile_GetDistance(unit->o.position, unit->currentDestination) + 16));
 	}
 
 	unit->speedRemainder = speed & 0xFF;
@@ -1896,12 +1896,11 @@ void Unit_SetSpeed(Unit *unit, uint16 speed)
 	}
 
 	speedPerTick = speed << 4;
-	speed        = speed >> 4;
 
-	if (speed != 0) {
+	if ((speed >> 4) != 0) {
 		speedPerTick = 255;
 	} else {
-		speed = 1;
+		speed = 16;
 	}
 
 	unit->speed = speed & 0xFF;

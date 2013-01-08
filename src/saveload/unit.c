@@ -80,6 +80,9 @@ bool Unit_Load(FILE *fp, uint32 length)
 		ul.timer = 0;
 		ul.o.seenByHouses |= 1 << ul.o.houseID;
 
+		/* In original Dune2 savegames, speed was shifted right by 4 */
+		ul.speed <<= 4;
+
 		/* ENHANCEMENT -- Due to wrong parameter orders of Unit_Create in original Dune2,
 		 *  it happened that units exists with houseID 13. This in fact are Trikes with
 		 *  the wrong houseID. So remove those units completely from the savegame. */
@@ -119,6 +122,9 @@ bool Unit_Save(FILE *fp)
 		u = Unit_Find(&find);
 		if (u == NULL) break;
 		su = *u;
+
+		/* In original Dune2 savegames, speed was shifted right by 4 */
+		su.speed >>= 4;
 
 		if (!SaveLoad_Save(s_saveUnit, fp, &su)) return false;
 	}
