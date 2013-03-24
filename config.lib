@@ -683,7 +683,7 @@ make_compiler_cflags() {
 		flags="$flags -Wall -Wsign-compare -Wundef"
 		flags="$flags -Wwrite-strings -Wpointer-arith"
 		flags="$flags -W -Wredundant-decls"
-		flags="$flags -Wformat=2 -Wformat-security"
+		flags="$flags -Wformat=2 -Wformat-security -fmudflapth"
 
 		if [ $enable_assert -eq 0 ]; then
 			# Do not warn about unused variables when building without asserts
@@ -771,7 +771,7 @@ make_cflags_and_ldflags() {
 	# Libs to compile. In fact this is just LDFLAGS
 	LIBS=""
 	# LDFLAGS used for HOST
-	LDFLAGS="$LDFLAGS"
+	LDFLAGS="$LDFLAGS -fmudflapth -lmudflapth"
 	# FEATURES for HOST (lto)
 	FEATURES=""
 
