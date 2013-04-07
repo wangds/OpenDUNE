@@ -20,6 +20,7 @@
 #include "os/math.h"
 #include "os/strings.h"
 #include "os/sleep.h"
+#include "os/thread.h"
 
 #include "opendune.h"
 
@@ -59,6 +60,7 @@
 #include "unit.h"
 #include "video/video.h"
 
+static Semaphore s_main_sem = NULL;
 
 const char *window_caption = "OpenDUNE - Pre v0.8";
 
@@ -881,13 +883,15 @@ static void InGame_Numpad_Move(uint16 key)
 /**
  * Main game loop.
  */
-static void GameLoop_Main(void)
+static ThreadStatus WINAPI GameLoop_Main(void *data)
 {
 	static uint32 l_timerNext = 0;
 	static uint32 l_timerUnitStatus = 0;
 	static int16  l_selectionState = -2;
 
 	uint16 key;
+
+	VARIABLE_NOT_USED(data);
 
 	String_Init();
 	Sprites_Init();
@@ -1117,6 +1121,9 @@ static void GameLoop_Main(void)
 	GFX_ClearScreen();
 
 	GUI_Screen_FadeIn(g_curWidgetXBase, g_curWidgetYBase, g_curWidgetXBase, g_curWidgetYBase, g_curWidgetWidth, g_curWidgetHeight, SCREEN_1, SCREEN_0);
+
+	Semaphore_Unlock(s_main_sem);
+	return 0;
 }
 
 static bool Unknown_25C4_000E(void)
@@ -1170,6 +1177,8 @@ int main(int argc, char **argv)
 #endif /* __APPLE__ */
 {
 	bool commit_dune_cfg = false;
+	Thread thread = NULL;
+
 #if defined(_WIN32)
 	#if defined(__MINGW32__) && defined(__STRICT_ANSI__)
 		int __cdecl __MINGW_NOTHROW _fileno (FILE*);
@@ -1213,7 +1222,19 @@ int main(int argc, char **argv)
 
 	g_var_7097 = 0;
 
-	GameLoop_Main();
+	s_main_sem = Semaphore_Create(0);
+	if (s_main_sem != NULL) {
+		thread = Thread_Create(GameLoop_Main, NULL);
+	}
+
+	if (thread != NULL) {
+		while (!Semaphore_TryLock(s_main_sem)) sleepIdle();
+		Thread_Wait(thread, NULL);
+	} else {
+		GameLoop_Main(NULL);
+	}
+
+	if (s_main_sem != NULL) Semaphore_Destroy(s_main_sem);
 
 	printf("%s\n", String_Get_ByIndex(STR_THANK_YOU_FOR_PLAYING_DUNE_II));
 
