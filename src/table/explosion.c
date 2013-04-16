@@ -356,7 +356,7 @@ static const ExplosionCommandStruct s_explosion19[] = {
 	{ EXPLOSION_STOP              ,    0 }
 };
 
-const ExplosionCommandStruct *g_table_explosion[] = {
+const ExplosionCommandStruct *g_table_explosion[20] = {
 	s_explosion00,
 	s_explosion01,
 	s_explosion02,

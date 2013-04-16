@@ -66,7 +66,7 @@ typedef struct SelectionTypeStruct {
 
 struct Widget;
 
-extern const SelectionTypeStruct g_table_selectionType[];
+extern const SelectionTypeStruct g_table_selectionType[8];
 
 extern uint8 *g_palette_998A;
 extern uint8 g_remap[256];
