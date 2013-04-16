@@ -19,7 +19,7 @@ static uint32 SaveLoad_Script_Script(void *object, uint32 value, bool loading)
 	return (script->script - script->scriptInfo->start);
 }
 
-const SaveLoadDesc g_saveScriptEngine[] = {
+const SaveLoadDesc g_saveScriptEngine[10] = {
 	SLD_ENTRY (ScriptEngine, SLDT_UINT16, delay),
 	SLD_CALLB (ScriptEngine, SLDT_UINT32, script, &SaveLoad_Script_Script),
 	SLD_EMPTY (              SLDT_UINT32),

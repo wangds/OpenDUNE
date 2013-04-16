@@ -6,7 +6,7 @@
 #include "saveload.h"
 #include "../object.h"
 
-const SaveLoadDesc g_saveObject[] = {
+const SaveLoadDesc g_saveObject[11] = {
 	SLD_ENTRY (Object, SLDT_UINT16, index),
 	SLD_ENTRY (Object, SLDT_UINT8,  type),
 	SLD_ENTRY (Object, SLDT_UINT8,  linkedID),

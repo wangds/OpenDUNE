@@ -130,9 +130,9 @@ typedef struct SaveLoadDesc {
 	void *address;                                          /*!< The address of the element. */
 } SaveLoadDesc;
 
-extern const SaveLoadDesc g_saveObject[];
-extern const SaveLoadDesc g_saveScriptEngine[];
-extern const SaveLoadDesc g_saveScenario[];
+extern const SaveLoadDesc g_saveObject[11];
+extern const SaveLoadDesc g_saveScriptEngine[10];
+extern const SaveLoadDesc g_saveScenario[17];
 
 extern uint32 SaveLoad_GetLength(const SaveLoadDesc *sld);
 extern bool SaveLoad_Load(const SaveLoadDesc *sld, FILE *fp, void *object);

@@ -18,7 +18,7 @@
  * norev000 is for non-releases that are made on systems without
  * subversion or sources that are not a checkout of subversion.
  */
-const char g_opendune_revision[] = "!!VERSION!!";
+const char * const g_opendune_revision = "!!VERSION!!";
 
 /**
  * The text version of OpenDune's build date.
@@ -26,7 +26,7 @@ const char g_opendune_revision[] = "!!VERSION!!";
  * updated for each revision in contrary to most other files that only see
  * updates when they are actually changed themselves.
  */
-const char g_opendune_build_date[] = __DATE__ " " __TIME__;
+const char * const g_opendune_build_date = __DATE__ " " __TIME__;
 
 /**
  * Let us know if current build was modified. This detection

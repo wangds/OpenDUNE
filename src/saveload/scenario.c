@@ -15,7 +15,7 @@ static const SaveLoadDesc s_saveReinforcement[] = {
 	SLD_END
 };
 
-const SaveLoadDesc g_saveScenario[] = {
+const SaveLoadDesc g_saveScenario[17] = {
 	SLD_ENTRY (Scenario, SLDT_UINT16, score),
 	SLD_ENTRY (Scenario, SLDT_UINT16, winFlags),
 	SLD_ENTRY (Scenario, SLDT_UINT16, loseFlags),
