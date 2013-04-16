@@ -166,7 +166,7 @@ static const char _music_dune20[] = "dune20";
  * Available music.
  * @note The code compares pointers rather than the text itself, thus strings must be unique.
  */
-const SoundData g_table_musics[] = {
+const SoundData g_table_musics[38] = {
 	{NULL,          0}, /*  0 */
 	{_music_dune01, 2}, /*  1 */
 	{_music_dune01, 3}, /*  2 */
@@ -210,7 +210,7 @@ const SoundData g_table_musics[] = {
 /**
  * Mapping soundID -> voice.
  */
-const uint16 g_table_voiceMapping[] = {
+const uint16 g_table_voiceMapping[120] = {
 	0xFFFF, /*   0 */
 	0xFFFF, /*   1 */
 	0xFFFF, /*   2 */
@@ -337,7 +337,7 @@ const uint16 g_table_voiceMapping[] = {
  * Feedback on events and user commands (English audio, viewport message, and sound).
  * @see g_translatedVoice
  */
-const Feedback g_feedback[] = {
+const Feedback g_feedback[94] = {
 	{{0x002B, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF}, 0x33, 0x003C}, /*  0 */
 	{{0x0031, 0x001D, 0x0024, 0x0037, 0xFFFF}, 0x34, 0xFFFF}, /*  1 */
 	{{0x0031, 0x001D, 0x0024, 0x0037, 0x0039}, 0x34, 0xFFFF}, /*  2 */
@@ -435,7 +435,7 @@ const Feedback g_feedback[] = {
 };
 
 /** Translated audio feedback of events and user commands. */
-const uint16 g_translatedVoice[][NUM_SPEECH_PARTS] = {
+const uint16 g_translatedVoice[94][NUM_SPEECH_PARTS] = {
 	{0x002B, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF}, /*  0 */
 	{0x0031, 0x001D, 0xFFFF, 0xFFFF, 0xFFFF}, /*  1 */
 	{0x0031, 0x001D, 0xFFFF, 0xFFFF, 0xFFFF}, /*  2 */
